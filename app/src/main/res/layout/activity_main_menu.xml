@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="0dp"
+    android:background="@drawable/bg"
+    android:backgroundTint="#98515151"
+    android:backgroundTintMode="src_over"
+    android:padding="16dp"
+    tools:context="com.game.photopuzzle.MainMenuActivity">
+
+    <TextView
+        android:id="@+id/txtSelectLevel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="10dp"
+        android:text="เลือกระดับความยาก"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/btnLevelEasy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtSelectLevel"
+        android:layout_centerHorizontal="true"
+        android:text="ง่าย"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/btnLevelMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnLevelEasy"
+        android:layout_centerHorizontal="true"
+        android:enabled="false"
+        android:text="ปานกลาง"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/btnLevelHard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnLevelMedium"
+        android:layout_centerHorizontal="true"
+        android:enabled="false"
+        android:text="ยาก"
+        android:textSize="20dp" />
+</RelativeLayout>
