@@ -30,25 +30,25 @@ import com.facebook.login.LoginResult;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     CallbackManager callbackManager;
     AccessTokenTracker accessTokenTracker;
     AccessToken accessToken;
     Profile profile;
     ProfileTracker profileTracker;
-    Button btnStart;
-    Button btnScoreboard;
+/*    Button btnStart;
+    Button btnScoreboard;*/
     public TextView txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
-        setContentView(R.layout.activity_main);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
+        setContentView(R.layout.activity_login);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+/*
         this.btnStart = (Button) this.findViewById(R.id.btnStart);
         this.btnScoreboard = (Button) this.findViewById(R.id.btnScoreboard);
 
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 goToBoard();
             }
-        });
+        });*/
 
         txt = (TextView) findViewById(R.id.txt_hello);
 
@@ -129,36 +129,26 @@ public class MainActivity extends AppCompatActivity {
         if (profile != null) {
             // txt.setText(profile.getFirstName() + " " + profile.getLastName());
             // if login with facebook then go to select level
-
+            this.goToMain(profile.getName());
         } else {
-            //this.hideMenu();
-            goToLogin();
+           /* this.hideMenu();*/
         }
     }
 
-/*    private void showMenu() {
+   /* private void showMenu() {
         this.btnStart.setVisibility(View.VISIBLE);
         this.btnScoreboard.setVisibility(View.VISIBLE);
-    }*/
+    }
 
-   /* private void hideMenu() {
+    private void hideMenu() {
         this.btnStart.setVisibility(View.INVISIBLE);
         this.btnScoreboard.setVisibility(View.INVISIBLE);
     }*/
 
-    private void goToMainMenu() {
-        Intent intent = new Intent(getBaseContext(), MainMenuActivity.class);
-        this.startActivity(intent);
-    }
-
-    private void goToLogin() {
-        Intent intent = new Intent(getBaseContext(), LoginActivity.class);
-        this.startActivity(intent);
-    }
-
-    private void goToBoard() {
-        Intent intent = new Intent(getBaseContext(), ScoreboardActivity.class);
-        this.startActivity(intent);
+    private void goToMain(String username) {
+        Intent i = new Intent(getBaseContext(), MainActivity.class);
+        i.putExtra("username", username);
+        this.startActivity(i);
     }
 
     public static void showHashKey(Context context) {
