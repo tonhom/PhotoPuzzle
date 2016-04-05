@@ -1,11 +1,13 @@
 package com.game.photopuzzle;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
@@ -14,7 +16,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
@@ -27,8 +30,15 @@ import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -37,36 +47,90 @@ public class LoginActivity extends AppCompatActivity {
     AccessToken accessToken;
     Profile profile;
     ProfileTracker profileTracker;
-/*    Button btnStart;
-    Button btnScoreboard;*/
-    public TextView txt;
+    Button btnLogin, btnRegister;
+    EditText txtUser, txtPass;
+    //public TextView txt;
+    HttpActivity Http = new HttpActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
+
+        // Permission StrictMode
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        final AlertDialog.Builder ad = new AlertDialog.Builder(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-/*
-        this.btnStart = (Button) this.findViewById(R.id.btnStart);
-        this.btnScoreboard = (Button) this.findViewById(R.id.btnScoreboard);
 
-        this.btnStart.setOnClickListener(new View.OnClickListener() {
+        // txt = (TextView) findViewById(R.id.txt_hello);
+
+
+        btnLogin = (Button) findViewById(R.id.btnLogin);
+        btnRegister = (Button) findViewById(R.id.btnRegister);
+        txtUser = (EditText)findViewById(R.id.txtUsername);
+        txtPass = (EditText)findViewById(R.id.txtPassword);
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToMainMenu();
+                String url = getString(R.string.str_url);
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("status", "login"));
+                params.add(new BasicNameValuePair("strUser", txtUser.getText().toString()));
+                params.add(new BasicNameValuePair("strPass", txtPass.getText().toString()));
+
+                String resultServer = Http.getHttpPost(url, params);
+
+                /*** Default Value ***/
+                String strStatusID = "0";
+                String strMemberID = "0";
+                String strError = "Unknow Status!";
+
+                JSONObject c;
+                try {
+                    c = new JSONObject(resultServer);
+                    strStatusID = c.getString("StatusID");
+                    strMemberID = c.getString("MemberID");
+                    strError = c.getString("Error");
+
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+
+                // Prepare Login
+                if (strStatusID.equals("0")) {
+                    // Dialog
+                    ad.setTitle("แจ้งเตือน! ");
+                    ad.setIcon(android.R.drawable.btn_star_big_on);
+                    ad.setPositiveButton("ปิด", null);
+                    ad.setMessage(strError);
+                    ad.show();
+                    txtUser.setText("");
+                    txtPass.setText("");
+                } else {
+                    Toast.makeText(LoginActivity.this, "Login OK", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                    //i.putExtra("MemberID", strMemberID);
+                    startActivity(i);
+                }
+            }
+        });
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(i);
             }
         });
 
-        this.btnScoreboard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToBoard();
-            }
-        });*/
-
-        txt = (TextView) findViewById(R.id.txt_hello);
 
         //showHashKey(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();

@@ -53,7 +53,7 @@
             android:layout_marginTop="5dip"
             android:layout_marginBottom="20dip"
             android:singleLine="true"
-            android:id="@+id/btnUsername" />
+            android:id="@+id/txtUsername" />
         <!--  Password Label -->
         <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
             android:layout_marginTop="5dip"
             android:singleLine="true"
             android:password="true"
-            android:id="@+id/btmPassword" />
+            android:id="@+id/txtPassword" />
         <!-- Login button -->
         <Button android:id="@+id/btnLogin"
             android:layout_width="fill_parent"
@@ -83,7 +83,7 @@
             android:layout_gravity="center_horizontal"
             android:padding="30dp" />
 
-        <TextView android:id="@+id/link_to_register"
+        <TextView android:id="@+id/btnRegister"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dip"

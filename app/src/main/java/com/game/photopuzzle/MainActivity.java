@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -51,14 +50,12 @@ public class MainActivity extends AppCompatActivity {
 
         this.btnStart = (Button) this.findViewById(R.id.btnStart);
         this.btnScoreboard = (Button) this.findViewById(R.id.btnScoreboard);
-
         this.btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToMainMenu();
             }
         });
-
         this.btnScoreboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
