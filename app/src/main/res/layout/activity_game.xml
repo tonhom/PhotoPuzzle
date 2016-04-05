@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".GameActivity"
+    android:background="@drawable/game7">
+    
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/editTextAnswer"
+        android:singleLine="true"
+        android:background="#fff"
+        android:layout_below="@+id/button"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="ส่งคำตอบ"
+        android:gravity="center"
+        android:id="@+id/btnSendAnswer"
+        android:onClick="checkAnswer"
+        android:singleLine="false"
+        android:background="#1fd819"
+        android:layout_below="@+id/editTextAnswer"
+        android:layout_alignParentStart="true"
+        android:textColor="#fff"
+        android:textStyle="bold|italic" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:text="Image Question"
+        android:id="@+id/button"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ตัวช่วย"
+        android:id="@+id/btnHelp"
+        android:layout_below="@+id/btnSendAnswer"
+        android:layout_alignParentStart="true"
+        android:background="#e1d605"
+        android:textColor="#fff"
+        android:textStyle="bold|italic" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="จบการเล่นเกมส์"
+        android:id="@+id/btnEnd"
+        android:background="#eeff1525"
+        android:layout_below="@+id/btnHelp"
+        android:layout_centerHorizontal="true"
+        android:textColor="#fff"
+        android:textStyle="bold|italic" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="ระดับเกมส์ : xxx"
+        android:id="@+id/btnLevel"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:background="#e907cf"
+        android:textColor="#fff"
+        android:textStyle="bold" />
+
+</RelativeLayout>

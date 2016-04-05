@@ -31,7 +31,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".MainMenuActivity" />
         <activity android:name=".ScoreboardActivity" />
-        <activity android:name=".EasyLevelActivity"></activity>
+        <activity android:name=".GameActivity"></activity>
     </application>
 
 </manifest>

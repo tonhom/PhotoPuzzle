@@ -19,7 +19,7 @@ public class MainMenuActivity extends AppCompatActivity {
         this.btnLevelEasy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), EasyLevelActivity.class);
+                Intent intent = new Intent(getBaseContext(), GameActivity.class);
                 startActivity(intent);
             }
         });
