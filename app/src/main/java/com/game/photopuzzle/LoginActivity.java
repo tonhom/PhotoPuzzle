@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                 /*** Default Value ***/
                 String strStatusID = "0";
                 String strMemberID = "0";
-                String strError = "Unknow Status!";
+                String strError = "กรุณาเช็คการเชื่อมต่อ Internet!";
 
                 JSONObject c;
                 try {
@@ -107,7 +107,6 @@ public class LoginActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-
                 // Prepare Login
                 if (strStatusID.equals("0")) {
                     // Dialog
@@ -120,8 +119,8 @@ public class LoginActivity extends AppCompatActivity {
                     txtPass.setText("");
                 } else {
                     Toast.makeText(LoginActivity.this, "Login OK", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                    //i.putExtra("MemberID", strMemberID);
+                    Intent i = new Intent(getBaseContext(), MainActivity.class);
+                    i.putExtra("strUserID", strMemberID);
                     startActivity(i);
                 }
             }
@@ -129,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+                Intent i = new Intent(getBaseContext(), RegisterActivity.class);
                 startActivity(i);
             }
         });

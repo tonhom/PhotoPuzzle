@@ -23,7 +23,6 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getBaseContext(), GameActivity.class);
-                i.putExtra("strUserID","");
                 i.putExtra("question_level","EASY");
                 startActivity(i);
             }

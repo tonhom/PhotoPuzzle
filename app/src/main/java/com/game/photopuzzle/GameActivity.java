@@ -3,11 +3,14 @@ package com.game.photopuzzle;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -53,6 +56,28 @@ public class GameActivity extends Activity {
         btnEnd = (Button) findViewById(R.id.btnEnd);
         txtLevel = (Button) findViewById(R.id.btnLevel);
 
+        txtAnswer = (EditText)findViewById(R.id.editTextAnswer);
+
+        btAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CheckAnswer(txtAnswer.getText().toString().trim());
+            }
+        });
+        btnHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        btnEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(GameActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
+
         switch (question_level){
             case "EASY" : txtLevel.setText("ระดับ : ง่าย");
                 break;
@@ -95,7 +120,7 @@ public class GameActivity extends Activity {
                 int resQuestionId = getResources().getIdentifier(gameList.get(i_random).get("question_img"), "drawable", getPackageName());
                 imgQuestion.setBackgroundResource(resQuestionId);
             } else {
-                Intent i = new Intent(GameActivity.this, MainMenuActivity.class);
+                Intent i = new Intent(getBaseContext(), MainMenuActivity.class);
                 startActivity(i);
             }
         } catch (JSONException e) {
@@ -109,4 +134,16 @@ public class GameActivity extends Activity {
         return i1;
     }
 
+    private void CheckAnswer(String answer) {
+        if(answer.trim().equals(gameList.get(i_random).get("question_answer").trim())){
+            msgShow("เก่งมาก เป็นคำตอบที่ถูกต้อง ^_^");
+        } else{
+            msgShow("ไม่ถูกต้องลองพยามหน่อยนะ T_T");
+        }
+
+    }
+
+    private void msgShow(String strMsg){
+        Toast.makeText(getApplicationContext(), strMsg, Toast.LENGTH_SHORT).show();
+    }
 }

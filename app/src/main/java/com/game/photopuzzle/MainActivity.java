@@ -36,9 +36,8 @@ public class MainActivity extends AppCompatActivity {
     AccessToken accessToken;
     Profile profile;
     ProfileTracker profileTracker;
-    Button btnStart;
-    Button btnScoreboard;
-    public TextView txt;
+    Button btnStart, btnScoreboard, btnExit;
+    String strUserID = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,23 +46,41 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            strUserID = extras.getString("strUserID");
+        }
 
-        this.btnStart = (Button) this.findViewById(R.id.btnStart);
-        this.btnScoreboard = (Button) this.findViewById(R.id.btnScoreboard);
-        this.btnStart.setOnClickListener(new View.OnClickListener() {
+        btnStart = (Button) this.findViewById(R.id.btnStart);
+        btnScoreboard = (Button) this.findViewById(R.id.btnScoreboard);
+        btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToMainMenu();
+                Intent i = new Intent(getBaseContext(), MainMenuActivity.class);
+                i.putExtra("strUserID", strUserID);
+                startActivity(i);
             }
         });
-        this.btnScoreboard.setOnClickListener(new View.OnClickListener() {
+        btnExit = (Button)findViewById(R.id.btnExit);
+
+        btnScoreboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToBoard();
+                Intent i = new Intent(getBaseContext(), ScoreboardActivity.class);
+                i.putExtra("strUserID", strUserID);
+                startActivity(i);
             }
         });
 
-        txt = (TextView) findViewById(R.id.txt_hello);
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
 
         //showHashKey(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
@@ -123,39 +140,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void setProfile(Profile profile) {
 
-        if (profile != null) {
+        if (profile != null || !"".equals(strUserID)) {
             // txt.setText(profile.getFirstName() + " " + profile.getLastName());
             // if login with facebook then go to select level
-
         } else {
-            //this.hideMenu();
-            goToLogin();
+            Intent i = new Intent(getBaseContext(), LoginActivity.class);
+            startActivity(i);
         }
-    }
-
-/*    private void showMenu() {
-        this.btnStart.setVisibility(View.VISIBLE);
-        this.btnScoreboard.setVisibility(View.VISIBLE);
-    }*/
-
-   /* private void hideMenu() {
-        this.btnStart.setVisibility(View.INVISIBLE);
-        this.btnScoreboard.setVisibility(View.INVISIBLE);
-    }*/
-
-    private void goToMainMenu() {
-        Intent intent = new Intent(getBaseContext(), MainMenuActivity.class);
-        this.startActivity(intent);
-    }
-
-    private void goToLogin() {
-        Intent intent = new Intent(getBaseContext(), LoginActivity.class);
-        this.startActivity(intent);
-    }
-
-    private void goToBoard() {
-        Intent intent = new Intent(getBaseContext(), ScoreboardActivity.class);
-        this.startActivity(intent);
     }
 
     public static void showHashKey(Context context) {

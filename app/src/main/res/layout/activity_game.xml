@@ -18,31 +18,35 @@
         android:singleLine="true"
         android:background="#fff"
         android:layout_below="@+id/btnImgQuestion"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp" />
 
     <Button
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="ส่งคำตอบ"
         android:gravity="center"
         android:id="@+id/btnSendAnswer"
-        android:onClick="checkAnswer"
         android:singleLine="false"
         android:background="@drawable/bt014"
         android:layout_below="@+id/editTextAnswer"
         android:layout_alignParentStart="true"
         android:textColor="#fff"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        android:layout_marginTop="5dp" />
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="250dp"
+        android:layout_height="220dp"
         android:text=""
         android:id="@+id/btnImgQuestion"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="40dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/btnLevel"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
 
     <Button
         android:layout_width="match_parent"
@@ -50,7 +54,6 @@
         android:text="ตัวช่วย"
         android:id="@+id/btnHelp"
         android:layout_below="@+id/btnSendAnswer"
-        android:layout_alignParentStart="true"
         android:background="@drawable/bt015"
         android:textColor="#fff"
         android:textStyle="bold|italic" />
@@ -70,12 +73,12 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:text="ระดับเกมส์ : xxx"
+        android:gravity="center|center_horizontal|center_vertical"
         android:id="@+id/btnLevel"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:background="#e907cf"
+        android:background="@drawable/button2"
         android:textColor="#fff"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="10dp" />
 
 </RelativeLayout>

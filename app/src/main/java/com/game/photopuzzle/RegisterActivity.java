@@ -107,7 +107,7 @@ public class RegisterActivity extends Activity {
 
         } else {
             Toast.makeText(RegisterActivity.this, "สมัครสมาชิกสำเร็จ", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(RegisterActivity.this, MainActivity.class);
+            Intent i = new Intent(getBaseContext(), MainActivity.class);
             startActivity(i);
         }
     }
