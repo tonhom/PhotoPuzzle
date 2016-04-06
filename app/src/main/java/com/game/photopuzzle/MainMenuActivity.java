@@ -9,11 +9,17 @@ import android.widget.Button;
 public class MainMenuActivity extends AppCompatActivity {
 
     Button btnLevelEasy, btnLevelMedium, btnLevelHard;
-
+    String strUserID = "", question_level = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            strUserID = extras.getString("strUserID");
+            question_level = extras.getString("question_level");
+        }
 
         this.btnLevelEasy = (Button) findViewById(R.id.btnLevelEasy);
         this.btnLevelMedium = (Button) findViewById(R.id.btnLevelMedium);
@@ -23,6 +29,7 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getBaseContext(), GameActivity.class);
+                i.putExtra("strUserID", strUserID);
                 i.putExtra("question_level","EASY");
                 startActivity(i);
             }

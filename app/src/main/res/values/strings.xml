@@ -6,4 +6,8 @@
     <string name="url_local">http://10.0.3.2/photopuzzlegame/mobile_service.php</string>
     <string name="url_web">http://www.photopuzzlegame.com/mobile_service.php</string>
     <string name="str_url">http://www.photopuzzlegame.com/mobile_service.php</string>
+
+    <string name="url_local_video">http://10.0.3.2/photopuzzlegame/video/</string>
+    <string name="url_web_video"> http://photopuzzlegame.com/video/</string>
+    <string name="str_url_video">http://photopuzzlegame.com/video/</string>
 </resources>

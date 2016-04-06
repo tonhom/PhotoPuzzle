@@ -138,10 +138,20 @@ public class GameActivity extends Activity {
     private void CheckAnswer(String answer) {
         if(answer.trim().equals(gameList.get(i_random).get("question_answer").trim())){
             msgShow("เก่งมาก เป็นคำตอบที่ถูกต้อง ^_^");
+            PlayVideo();
         } else{
             msgShow("ไม่ถูกต้องลองพยามหน่อยนะ T_T");
+           // PlayVideo();
         }
 
+    }
+
+    private void PlayVideo() {
+        Intent i = new Intent(getBaseContext(), VideoActivity.class);
+        i.putExtra("strUserID", strUserID);
+        i.putExtra("question_level",question_level);
+        i.putExtra("video", gameList.get(i_random).get("question_video").trim());
+        startActivity(i);
     }
 
     private void msgShow(String strMsg){
