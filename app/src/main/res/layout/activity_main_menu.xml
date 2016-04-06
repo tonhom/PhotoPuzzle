@@ -30,7 +30,7 @@
         android:enabled="false"
         android:text="ปานกลาง"
         android:textSize="20dp"
-        android:background="@drawable/bt013" />
+        android:background="@drawable/bt014" />
 
     <Button
         android:id="@+id/btnLevelHard"
@@ -41,14 +41,14 @@
         android:enabled="false"
         android:text="ยาก"
         android:textSize="20dp"
-        android:background="@drawable/bt013" />
+        android:background="@drawable/bt015" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:text="ระดับความยาก"
         android:id="@+id/button3"
-        android:background="#e907cf"
+        android:background="@drawable/button2"
         android:textColor="#fff"
         android:textStyle="bold"
         android:layout_alignParentTop="true"

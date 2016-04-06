@@ -56,25 +56,27 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:text="สมัครสมาชิก"
         android:id="@+id/btnRegister"
-        android:background="@drawable/bt013"
+        android:background="@drawable/bt014"
         android:textStyle="bold|italic"
         android:layout_above="@+id/btnBack"
         android:layout_alignParentStart="true"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:textColor="#fff" />
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:text="กลับ"
         android:id="@+id/btnBack"
         android:textStyle="bold|italic"
-        android:background="@drawable/bt013"
+        android:background="@drawable/bt018"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:textColor="#fff" />
 
     <Button
         android:layout_width="match_parent"
