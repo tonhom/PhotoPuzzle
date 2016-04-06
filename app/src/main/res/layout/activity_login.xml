@@ -70,8 +70,10 @@
             android:layout_width="fill_parent"
             android:layout_height="100dp"
             android:layout_marginTop="10dip"
-            android:text="Login"
-            android:background="@drawable/button_g" />
+            android:text="เข้าสู่ระบบ"
+            android:background="@drawable/button_g"
+            android:textStyle="bold|italic"
+            android:textColor="#fff" />
         <!-- Link to Registration Screen -->
         <com.facebook.login.widget.LoginButton
             android:layout_marginTop="0dp"
@@ -83,16 +85,17 @@
             android:layout_gravity="center_horizontal"
             android:padding="30dp" />
 
-        <TextView android:id="@+id/btnRegister"
+        <Button android:id="@+id/btnRegister"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dip"
             android:layout_marginBottom="40dip"
-            android:text="Register here"
+            android:text="สมัครสมาชิก"
             android:gravity="center"
             android:textSize="20dip"
             android:textColor="#fcfcfc"
-            android:textStyle="bold" />
+            android:textStyle="bold|italic"
+            android:background="@drawable/bt015" />
 
     </LinearLayout>
     <!-- Login Form Ends -->

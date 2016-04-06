@@ -51,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText txtUser, txtPass;
     //public TextView txt;
     HttpActivity Http = new HttpActivity();
+    JSONUrl json = new JSONUrl();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +83,10 @@ public class LoginActivity extends AppCompatActivity {
                 String url = getString(R.string.str_url);
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("status", "login"));
+                params.add(new BasicNameValuePair("strUserID", ""));
                 params.add(new BasicNameValuePair("strUser", txtUser.getText().toString()));
                 params.add(new BasicNameValuePair("strPass", txtPass.getText().toString()));
+                params.add(new BasicNameValuePair("question_level", ""));
 
                 String resultServer = Http.getHttpPost(url, params);
 

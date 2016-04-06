@@ -71,8 +71,11 @@ public class RegisterActivity extends Activity {
                 String url = getString(R.string.str_url);
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("status", "register"));
+                params.add(new BasicNameValuePair("strUserID", ""));
                 params.add(new BasicNameValuePair("strUser", txtUsername.getText().toString().trim()));
                 params.add(new BasicNameValuePair("strPass", txtPassword.getText().toString().trim()));
+                params.add(new BasicNameValuePair("question_level", ""));
+
                 String resultServer = Http.getHttpPost(url, params);
 
                 JSONObject c;
