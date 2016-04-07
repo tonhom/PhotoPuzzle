@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
@@ -100,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 // Set the access token using
                 // currentAccessToken when it's loaded or set.
                 Profile.fetchProfileForCurrentAccessToken();
+                strUserID = "";
             }
         };
 

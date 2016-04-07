@@ -191,30 +191,38 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setProfile(Profile profile) {
-
         if (profile != null) {
-            // txt.setText(profile.getFirstName() + " " + profile.getLastName());
             // if login with facebook then go to select level
             this.goToMain(profile.getName());
-        } else {
-           /* this.hideMenu();*/
         }
     }
 
-   /* private void showMenu() {
-        this.btnStart.setVisibility(View.VISIBLE);
-        this.btnScoreboard.setVisibility(View.VISIBLE);
-    }
-
-    private void hideMenu() {
-        this.btnStart.setVisibility(View.INVISIBLE);
-        this.btnScoreboard.setVisibility(View.INVISIBLE);
-    }*/
-
     private void goToMain(String username) {
-        Intent i = new Intent(getBaseContext(), MainActivity.class);
-        i.putExtra("username", username);
-        this.startActivity(i);
+        String url = getString(R.string.str_url);
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("status", "login_facebook"));
+        params.add(new BasicNameValuePair("strUserID", ""));
+        params.add(new BasicNameValuePair("strUser", username));
+        params.add(new BasicNameValuePair("strPass", ""));
+        params.add(new BasicNameValuePair("question_level", ""));
+
+        String resultServer = Http.getHttpPost(url, params);
+
+        /*** Default Value ***/
+        String strMemberID = "0";
+
+        JSONObject c;
+        try {
+            c = new JSONObject(resultServer);
+            strMemberID = c.getString("MemberID");
+            Intent i = new Intent(getBaseContext(), MainActivity.class);
+            i.putExtra("strUserID", strMemberID);
+            this.startActivity(i);
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public static void showHashKey(Context context) {

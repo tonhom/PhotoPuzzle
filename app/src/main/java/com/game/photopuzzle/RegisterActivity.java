@@ -91,7 +91,7 @@ public class RegisterActivity extends Activity {
                     e.printStackTrace();
                 }
             } else {
-                strError = "พาสเวิร์ดไม่ตรงกัน";
+                strError = "รหัสผ่านไม่ตรงกัน";
             }
         } else {
             strError = "กรุณากรอกข้อมูลให้ครบถ้วน";
