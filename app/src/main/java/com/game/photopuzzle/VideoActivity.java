@@ -43,7 +43,7 @@ public class VideoActivity extends Activity {
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), GameActivity.class);
+                Intent i = new Intent(getBaseContext(), GameChoiActivity.class);
                 i.putExtra("strUserID", strUserID);
                 i.putExtra("question_level", question_level);
                 startActivity(i);

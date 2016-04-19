@@ -40,7 +40,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="220dp"
-        android:text=""
         android:id="@+id/btnImgQuestion"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"

@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         final AlertDialog.Builder ad = new AlertDialog.Builder(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
         // txt = (TextView) findViewById(R.id.txt_hello);
 

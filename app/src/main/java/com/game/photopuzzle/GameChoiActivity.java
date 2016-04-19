@@ -1,15 +1,12 @@
 package com.game.photopuzzle;
 
-
 import android.app.Activity;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -23,9 +20,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-public class GameActivity extends Activity {
-    Button imgQuestion, btAnswer, btnHelp, btnEnd, txtLevel;
-    EditText txtAnswer;
+/**
+ * Created by User on 19/4/2559.
+ */
+public class GameChoiActivity extends Activity{
+    private Button iQuestion, btAnswer1, btAnswer2, btAnswer3, btExit, txtLevel;
     final ArrayList<HashMap<String, String>> gameList = new ArrayList<HashMap<String, String>>();
     HashMap<String, String> map;
     int i_random = 0;
@@ -36,7 +35,7 @@ public class GameActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_game_choi);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -50,27 +49,49 @@ public class GameActivity extends Activity {
             StrictMode.setThreadPolicy(policy);
         }
 
-        imgQuestion = (Button) findViewById(R.id.btnImgQuestion);
-        btAnswer = (Button) findViewById(R.id.btnSendAnswer);
-        btnHelp = (Button) findViewById(R.id.btnHelp);
-        btnEnd = (Button) findViewById(R.id.btnEnd);
         txtLevel = (Button) findViewById(R.id.btnLevel);
+        iQuestion = (Button)findViewById(R.id.imgQuestion);
+        btAnswer1 = (Button)findViewById(R.id.btnAnswer1);
+        btAnswer2 = (Button)findViewById(R.id.btnAnswer2);
+        btAnswer3 = (Button)findViewById(R.id.btnAnswer3);
+        btExit = (Button)findViewById(R.id.btnExit);
 
-        txtAnswer = (EditText)findViewById(R.id.editTextAnswer);
+        switch (question_level) {
+            case "EASY":
+                txtLevel.setText("ระดับ : ง่าย");
+                break;
+            case "MEDIUM":
+                txtLevel.setText("ระดับ : ปานกลาง");
+                break;
+            case "HARD":
+                txtLevel.setText("ระดับ : ยาก");
+                break;
+            default:
+                txtLevel.setText("ระดับ : ");
+                break;
+        }
 
-       btAnswer.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               CheckAnswer(txtAnswer.getText().toString().trim());
-           }
-       });
-        btnHelp.setOnClickListener(new View.OnClickListener() {
+        GamesAll();
+
+        btAnswer1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                CheckAnswer("1");
             }
         });
-        btnEnd.setOnClickListener(new View.OnClickListener() {
+        btAnswer2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CheckAnswer("2");
+            }
+        });
+        btAnswer3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CheckAnswer("3");
+            }
+        });
+        btExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getBaseContext(), MainActivity.class);
@@ -78,18 +99,38 @@ public class GameActivity extends Activity {
                 startActivity(i);
             }
         });
+    }
 
-        switch (question_level){
-            case "EASY" : txtLevel.setText("ระดับ : ง่าย");
+    private void CheckAnswer(String answer) {
+        switch (answer) {
+            case "1":
+                if(gameList.get(i_random).get("answer1").equals(gameList.get(i_random).get("question_answer"))){
+                    msgShow("ถูก");
+                    PlayVideo();
+                }else{
+                    msgShow("ผิด");
+                }
                 break;
-            case "MEDIUM" : txtLevel.setText("ระดับ : ปานกลาง");
+            case "2":
+                if(gameList.get(i_random).get("answer2").equals(gameList.get(i_random).get("question_answer"))){
+                    msgShow("ถูก");
+                    PlayVideo();
+                }else{
+                    msgShow("ผิด");
+                }
                 break;
-            case "HARD" : txtLevel.setText("ระดับ : ยาก");
+            case "3":
+                if(gameList.get(i_random).get("answer3").equals(gameList.get(i_random).get("question_answer"))){
+                    msgShow("ถูก");
+                    GamesAll();
+                }else{
+                    msgShow("ผิด");
+                }
                 break;
-            default: txtLevel.setText("ระดับ : ");
+            default:
                 break;
         }
-        GamesAll();
+
     }
 
     private void GamesAll() {
@@ -111,6 +152,9 @@ public class GameActivity extends Activity {
                 map.put("question_id", c.getString("question_id"));
                 map.put("question_img", c.getString("question_img"));
                 map.put("question_answer", c.getString("question_answer"));
+                map.put("answer1", c.getString("answer1"));
+                map.put("answer2", c.getString("answer2"));
+                map.put("answer3", c.getString("answer3"));
                 map.put("question_guide", c.getString("question_guide"));
                 map.put("question_video", c.getString("question_video"));
                 map.put("question_level", c.getString("question_level"));
@@ -119,7 +163,14 @@ public class GameActivity extends Activity {
             if (gameList.size() > 0) {
                 i_random = randInt(0, gameList.size() - 1);
                 int resQuestionId = getResources().getIdentifier(gameList.get(i_random).get("question_img"), "drawable", getPackageName());
-                imgQuestion.setBackgroundResource(resQuestionId);
+                iQuestion.setBackgroundResource(resQuestionId);
+
+                String resanswer1 = gameList.get(i_random).get("answer1");
+                btAnswer1.setText(resanswer1);
+                String resanswer2 = gameList.get(i_random).get("answer2");
+                btAnswer2.setText(resanswer2);
+                String resanswer3 = gameList.get(i_random).get("answer3");
+                btAnswer3.setText(resanswer3);
             } else {
                 Intent i = new Intent(getBaseContext(), MainMenuActivity.class);
                 startActivity(i);
@@ -135,15 +186,8 @@ public class GameActivity extends Activity {
         return i1;
     }
 
-    private void CheckAnswer(String answer) {
-        if(answer.trim().equals(gameList.get(i_random).get("question_answer").trim())){
-            msgShow("เก่งมาก เป็นคำตอบที่ถูกต้อง ^_^");
-            PlayVideo();
-        } else{
-            msgShow("ไม่ถูกต้องลองพยามหน่อยนะ T_T");
-           // PlayVideo();
-        }
-
+    private void msgShow(String strMsg){
+        Toast.makeText(getApplicationContext(), strMsg, Toast.LENGTH_SHORT).show();
     }
 
     private void PlayVideo() {
@@ -152,9 +196,5 @@ public class GameActivity extends Activity {
         i.putExtra("question_level",question_level);
         i.putExtra("video", gameList.get(i_random).get("question_video").trim());
         startActivity(i);
-    }
-
-    private void msgShow(String strMsg){
-        Toast.makeText(getApplicationContext(), strMsg, Toast.LENGTH_SHORT).show();
     }
 }
