@@ -1,9 +1,9 @@
 package com.game.photopuzzle;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Activity;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +13,7 @@ import android.widget.VideoView;
 /**
  * Created by Administrator on 4/6/2016.
  */
-public class VideoActivity extends Activity {
+public class VideoChoiActivity extends Activity {
     HttpActivity Http = new HttpActivity();
     JSONUrl json = new JSONUrl();
     Button btnClose;
@@ -43,7 +43,7 @@ public class VideoActivity extends Activity {
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), GameActivity.class);
+                Intent i = new Intent(getBaseContext(), GameChoiActivity.class);
                 i.putExtra("strUserID", strUserID);
                 i.putExtra("question_level", question_level);
                 startActivity(i);

@@ -3,7 +3,6 @@ package com.game.photopuzzle;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
@@ -191,7 +190,7 @@ public class GameChoiActivity extends Activity{
     }
 
     private void PlayVideo() {
-        Intent i = new Intent(getBaseContext(), VideoActivity.class);
+        Intent i = new Intent(getBaseContext(), VideoChoiActivity.class);
         i.putExtra("strUserID", strUserID);
         i.putExtra("question_level",question_level);
         i.putExtra("video", gameList.get(i_random).get("question_video").trim());

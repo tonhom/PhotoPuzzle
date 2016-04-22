@@ -34,5 +34,23 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        this.btnLevelEasy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), GameChoiActivity.class);
+                i.putExtra("strUserID", strUserID);
+                i.putExtra("question_level","MEDIUM");
+                startActivity(i);
+            }
+        });
+        this.btnLevelEasy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), GameActivity.class);
+                i.putExtra("strUserID", strUserID);
+                i.putExtra("question_level","HARD");
+                startActivity(i);
+            }
+        });
     }
 }
