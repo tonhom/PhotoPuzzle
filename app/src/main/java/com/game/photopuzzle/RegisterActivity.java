@@ -65,7 +65,7 @@ public class RegisterActivity extends Activity {
         /*** Default Value ***/
         String strStatusID = "0";
         String strMemberID = "0";
-        String strError = "Unknow Status!";
+        String strError = "กรุณาเชื่อมต่อ Internet!";
         if (!"".equals(txtUsername.getText().toString().trim()) && !"".equals(txtPassword.getText().toString().trim()) && !"".equals(txtConfirmPassword.getText().toString().trim())) {
             if (txtPassword.getText().toString().trim().equals(txtConfirmPassword.getText().toString().trim())) {
                 String url = getString(R.string.str_url);
