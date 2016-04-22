@@ -46,7 +46,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="ระดับความยาก"
+        android:text="ระดับของเกมส์"
         android:id="@+id/button3"
         android:background="@drawable/button2"
         android:textColor="#fff"
