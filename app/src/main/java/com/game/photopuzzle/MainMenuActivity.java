@@ -34,7 +34,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        this.btnLevelEasy.setOnClickListener(new View.OnClickListener() {
+        this.btnLevelMedium.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getBaseContext(), GameChoiActivity.class);
@@ -43,7 +43,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        this.btnLevelEasy.setOnClickListener(new View.OnClickListener() {
+        this.btnLevelHard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getBaseContext(), GameActivity.class);

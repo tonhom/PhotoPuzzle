@@ -104,26 +104,26 @@ public class GameChoiActivity extends Activity{
         switch (answer) {
             case "1":
                 if(gameList.get(i_random).get("answer1").equals(gameList.get(i_random).get("question_answer"))){
-                    msgShow("ถูก");
+                    msgShow("เก่งมาก เป็นคำตอบที่ถูกต้อง ^_^");
                     PlayVideo();
                 }else{
-                    msgShow("ผิด");
+                    msgShow("ไม่ถูกต้องลองพยามหน่อยนะ T_T");
                 }
                 break;
             case "2":
                 if(gameList.get(i_random).get("answer2").equals(gameList.get(i_random).get("question_answer"))){
-                    msgShow("ถูก");
+                    msgShow("เก่งมาก เป็นคำตอบที่ถูกต้อง ^_^");
                     PlayVideo();
                 }else{
-                    msgShow("ผิด");
+                    msgShow("ไม่ถูกต้องลองพยามหน่อยนะ T_T");
                 }
                 break;
             case "3":
                 if(gameList.get(i_random).get("answer3").equals(gameList.get(i_random).get("question_answer"))){
-                    msgShow("ถูก");
+                    msgShow("เก่งมาก เป็นคำตอบที่ถูกต้อง ^_^");
                     GamesAll();
                 }else{
-                    msgShow("ผิด");
+                    msgShow("ไม่ถูกต้องลองพยามหน่อยนะ T_T");
                 }
                 break;
             default:
