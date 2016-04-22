@@ -36,6 +36,7 @@
         <activity android:name=".GameActivity" android:screenOrientation="portrait" />
         <activity android:name=".RegisterActivity" android:screenOrientation="portrait" />
         <activity android:name=".VideoActivity" android:screenOrientation="portrait" />
+        <activity android:name=".VideoChoiActivity" android:screenOrientation="portrait" />
         <activity android:name=".LoginActivity" android:screenOrientation="portrait" />
         <activity android:name=".GameChoiActivity" android:screenOrientation="portrait" />
     </application>
