@@ -24,7 +24,7 @@
     <Button
         android:id="@+id/btnStart"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="80dp"
         android:padding="10dp"
         android:textSize="30dp"
         android:text="เล่นเกมส์"
@@ -36,13 +36,13 @@
     <Button
         android:id="@+id/btnScoreboard"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="80dp"
         android:layout_below="@+id/btnStart"
         android:padding="10dp"
         android:textSize="30dp"
-        android:text="อันดับผู้เล่น"
+        android:text="คะแนนของคุณ"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/bt013"
+        android:background="@drawable/bt015"
         android:textColor="#fff" />
 
     <com.facebook.login.widget.LoginButton
@@ -51,8 +51,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:padding="30dp"
-        android:layout_below="@+id/btnScoreboard"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/btnTopScore"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
 
     <Button
         android:layout_width="80dp"
@@ -62,5 +63,17 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp" />
+
+    <Button
+        android:id="@+id/btnTopScore"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:padding="10dp"
+        android:textSize="30dp"
+        android:text="อันดับผู้เล่น"
+        android:background="@drawable/bt018"
+        android:textColor="#fff"
+        android:layout_below="@+id/btnScoreboard"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
 
