@@ -121,7 +121,7 @@ public class GameChoiActivity extends Activity{
             case "3":
                 if(gameList.get(i_random).get("answer3").equals(gameList.get(i_random).get("question_answer"))){
                     msgShow("เก่งมาก เป็นคำตอบที่ถูกต้อง ^_^");
-                    GamesAll();
+                    PlayVideo();
                 }else{
                     msgShow("ไม่ถูกต้องลองพยามหน่อยนะ T_T");
                 }
