@@ -64,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+
         final AlertDialog.Builder ad = new AlertDialog.Builder(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -87,6 +88,8 @@ public class LoginActivity extends AppCompatActivity {
                 params.add(new BasicNameValuePair("strUser", txtUser.getText().toString()));
                 params.add(new BasicNameValuePair("strPass", txtPass.getText().toString()));
                 params.add(new BasicNameValuePair("question_level", ""));
+                params.add(new BasicNameValuePair("question_id", ""));
+                params.add(new BasicNameValuePair("help", ""));
 
                 String resultServer = Http.getHttpPost(url, params);
 
@@ -205,6 +208,8 @@ public class LoginActivity extends AppCompatActivity {
         params.add(new BasicNameValuePair("strUser", username));
         params.add(new BasicNameValuePair("strPass", ""));
         params.add(new BasicNameValuePair("question_level", ""));
+        params.add(new BasicNameValuePair("question_id", ""));
+        params.add(new BasicNameValuePair("help", ""));
 
         String resultServer = Http.getHttpPost(url, params);
 

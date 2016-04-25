@@ -27,7 +27,7 @@ public class GameChoiActivity extends Activity{
     final ArrayList<HashMap<String, String>> gameList = new ArrayList<HashMap<String, String>>();
     HashMap<String, String> map;
     int i_random = 0;
-    String strUserID = "", question_level = "";
+    String strUserID = "", question_level = "", question_id;
     HttpActivity Http = new HttpActivity();
     JSONUrl json = new JSONUrl();
 
@@ -105,6 +105,7 @@ public class GameChoiActivity extends Activity{
             case "1":
                 if(gameList.get(i_random).get("answer1").equals(gameList.get(i_random).get("question_answer"))){
                     msgShow("เก่งมาก เป็นคำตอบที่ถูกต้อง ^_^");
+                    SaveGame();
                     PlayVideo();
                 }else{
                     msgShow("ไม่ถูกต้องลองพยามหน่อยนะ T_T");
@@ -113,6 +114,7 @@ public class GameChoiActivity extends Activity{
             case "2":
                 if(gameList.get(i_random).get("answer2").equals(gameList.get(i_random).get("question_answer"))){
                     msgShow("เก่งมาก เป็นคำตอบที่ถูกต้อง ^_^");
+                    SaveGame();
                     PlayVideo();
                 }else{
                     msgShow("ไม่ถูกต้องลองพยามหน่อยนะ T_T");
@@ -121,6 +123,7 @@ public class GameChoiActivity extends Activity{
             case "3":
                 if(gameList.get(i_random).get("answer3").equals(gameList.get(i_random).get("question_answer"))){
                     msgShow("เก่งมาก เป็นคำตอบที่ถูกต้อง ^_^");
+                    SaveGame();
                     PlayVideo();
                 }else{
                     msgShow("ไม่ถูกต้องลองพยามหน่อยนะ T_T");
@@ -132,6 +135,22 @@ public class GameChoiActivity extends Activity{
 
     }
 
+    private void SaveGame() {
+        String url = getString(R.string.str_url);
+        question_id = gameList.get(i_random).get("question_id");
+        // Paste Parameters
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("status", "save_game"));
+        params.add(new BasicNameValuePair("strUserID", strUserID));
+        params.add(new BasicNameValuePair("strUser", ""));
+        params.add(new BasicNameValuePair("strPass", ""));
+        params.add(new BasicNameValuePair("question_level", ""));
+        params.add(new BasicNameValuePair("question_id", question_id));
+        params.add(new BasicNameValuePair("help", ""));
+
+        Http.getHttpPost(url, params);
+    }
+
     private void GamesAll() {
         String url = getString(R.string.str_url);
         // Paste Parameters
@@ -141,6 +160,8 @@ public class GameChoiActivity extends Activity{
         params.add(new BasicNameValuePair("strUser", ""));
         params.add(new BasicNameValuePair("strPass", ""));
         params.add(new BasicNameValuePair("question_level", question_level));
+        params.add(new BasicNameValuePair("question_id", ""));
+        params.add(new BasicNameValuePair("help", ""));
 
         try {
             JSONArray data = new JSONArray(json.getJSONUrl(url, params));

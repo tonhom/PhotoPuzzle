@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     AccessToken accessToken;
     Profile profile;
     ProfileTracker profileTracker;
-    Button btnStart, btnScoreboard, btnExit;
+    Button btnStart, btnScoreboard, btnTopScoreboard, btnExit;
     String strUserID = "";
 
     @Override
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnStart = (Button) this.findViewById(R.id.btnStart);
         btnScoreboard = (Button) this.findViewById(R.id.btnScoreboard);
+        btnTopScoreboard = (Button) this.findViewById(R.id.btnTopScore);
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        btnExit = (Button)findViewById(R.id.btnExit);
+        btnExit = (Button) findViewById(R.id.btnExit);
 
         btnScoreboard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +71,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
+        btnTopScoreboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), TopScoreboardActivity.class);
+                i.putExtra("strUserID", strUserID);
+                startActivity(i);
+            }
+        });
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -33,6 +33,7 @@
         <activity android:name=".MainActivity" android:screenOrientation="portrait" />
         <activity android:name=".MainMenuActivity" android:screenOrientation="portrait" />
         <activity android:name=".ScoreboardActivity" android:screenOrientation="portrait" />
+        <activity android:name=".TopScoreboardActivity" android:screenOrientation="portrait" />
         <activity android:name=".GameActivity" android:screenOrientation="portrait" />
         <activity android:name=".RegisterActivity" android:screenOrientation="portrait" />
         <activity android:name=".VideoActivity" android:screenOrientation="portrait" />

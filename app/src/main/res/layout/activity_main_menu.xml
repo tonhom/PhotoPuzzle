@@ -16,6 +16,7 @@
         android:layout_height="80dp"
         android:text="ง่าย"
         android:textSize="20dp"
+        android:enabled="false"
         android:background="@drawable/bt013"
         android:layout_marginTop="69dp"
         android:layout_below="@+id/button3"
