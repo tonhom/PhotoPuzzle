@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btnHelpAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:padding="10dp"
+        android:textSize="30dp"
+        android:text="เฉลยคำตอบ"
+        android:background="@drawable/bt014"
+        android:layout_below="@+id/txt_hello"
+        android:layout_alignParentStart="true"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/btnHelpSkip"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/btnStart"
+        android:padding="10dp"
+        android:textSize="30dp"
+        android:text="ข้ามสุภาษิตนี้"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bt015"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/btnHelpGuide"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:padding="10dp"
+        android:textSize="30dp"
+        android:text="ใบ้คำตอบ"
+        android:background="@drawable/bt018"
+        android:textColor="#fff"
+        android:layout_below="@+id/btnScoreboard"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="ปิด"
+        android:id="@+id/btnHelpClose"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/bt017"
+        android:layout_marginTop="50dp"
+        android:textColor="#fff" />
+</LinearLayout>

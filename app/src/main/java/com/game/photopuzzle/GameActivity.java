@@ -3,13 +3,11 @@ package com.game.photopuzzle;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -52,7 +50,7 @@ public class GameActivity extends Activity {
 
         imgQuestion = (Button) findViewById(R.id.btnImgQuestion);
         btAnswer = (Button) findViewById(R.id.btnSendAnswer);
-        btnHelp = (Button) findViewById(R.id.btnHelp);
+        btnHelp = (Button) findViewById(R.id.btnHelpClose);
         btnEnd = (Button) findViewById(R.id.btnEnd);
         txtLevel = (Button) findViewById(R.id.btnLevel);
 
