@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/linearLayout1"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent" >
+	<TextView
+		android:id="@+id/ColNo"
+		android:layout_width="0dp"
+		android:layout_height="30dp"
+		android:layout_weight="0.74"
+		android:gravity="center"
+		android:textSize="12dp"
+		android:text="no" />
+	<TextView
+		android:id="@+id/ColName"
+		android:layout_width="0dp"
+		android:layout_height="30dp"
+		android:layout_weight="1.11"
+		android:gravity="center"
+		android:textSize="12dp"
+		android:text="name" />
+	<TextView
+		android:id="@+id/ColScore"
+		android:layout_width="0dp"
+		android:gravity="center"
+		android:layout_height="30dp"
+		android:layout_weight="0.87"
+		android:textSize="12dp"
+		android:text="score" />
+
+</LinearLayout>

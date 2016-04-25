@@ -99,6 +99,8 @@ public class GameActivity extends Activity {
         params.add(new BasicNameValuePair("strUser", ""));
         params.add(new BasicNameValuePair("strPass", ""));
         params.add(new BasicNameValuePair("question_level", question_level));
+        params.add(new BasicNameValuePair("question_id", ""));
+        params.add(new BasicNameValuePair("help", ""));
 
         try {
             JSONArray data = new JSONArray(json.getJSONUrl(url, params));
