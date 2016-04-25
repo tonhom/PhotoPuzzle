@@ -193,6 +193,7 @@ public class GameChoiActivity extends Activity{
                 btAnswer3.setText(resanswer3);
             } else {
                 Intent i = new Intent(getBaseContext(), MainMenuActivity.class);
+                i.putExtra("strUserID", strUserID);
                 startActivity(i);
             }
         } catch (JSONException e) {
