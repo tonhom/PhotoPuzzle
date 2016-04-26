@@ -10,6 +10,7 @@
         android:padding="10dp"
         android:textSize="30dp"
         android:text="เฉลยคำตอบ"
+        android:enabled="false"
         android:background="@drawable/bt014"
         android:layout_below="@+id/txt_hello"
         android:layout_alignParentStart="true"
@@ -23,6 +24,7 @@
         android:padding="10dp"
         android:textSize="30dp"
         android:text="ข้ามสุภาษิตนี้"
+        android:enabled="false"
         android:layout_centerHorizontal="true"
         android:background="@drawable/bt015"
         android:textColor="#fff" />
@@ -34,19 +36,10 @@
         android:padding="10dp"
         android:textSize="30dp"
         android:text="ใบ้คำตอบ"
+        android:enabled="false"
         android:background="@drawable/bt018"
         android:textColor="#fff"
         android:layout_below="@+id/btnScoreboard"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="ปิด"
-        android:id="@+id/btnHelpClose"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:background="@drawable/bt017"
-        android:layout_marginTop="50dp"
-        android:textColor="#fff" />
 </LinearLayout>

@@ -51,10 +51,11 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="ตัวช่วย"
-        android:id="@+id/btnHelpClose"
+        android:id="@+id/btnHelp"
         android:layout_below="@+id/btnSendAnswer"
         android:background="@drawable/bt015"
         android:textColor="#fff"
+        android:enabled="false"
         android:textStyle="bold|italic" />
 
     <Button
@@ -63,7 +64,7 @@
         android:text="จบการเล่นเกมส์"
         android:id="@+id/btnEnd"
         android:background="@drawable/bt017"
-        android:layout_below="@+id/btnHelpClose"
+        android:layout_below="@+id/btnHelp"
         android:layout_centerHorizontal="true"
         android:textColor="#fff"
         android:textStyle="bold|italic" />

@@ -2,6 +2,8 @@ package com.game.photopuzzle;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -30,6 +32,7 @@ public class GameActivity extends Activity {
     String strUserID = "", question_level = "";
     HttpActivity Http = new HttpActivity();
     JSONUrl json = new JSONUrl();
+    String help_answer = "0", help_skip = "0", help_guide = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,22 +53,22 @@ public class GameActivity extends Activity {
 
         imgQuestion = (Button) findViewById(R.id.btnImgQuestion);
         btAnswer = (Button) findViewById(R.id.btnSendAnswer);
-        btnHelp = (Button) findViewById(R.id.btnHelpClose);
+        btnHelp = (Button) findViewById(R.id.btnHelp);
         btnEnd = (Button) findViewById(R.id.btnEnd);
         txtLevel = (Button) findViewById(R.id.btnLevel);
 
-        txtAnswer = (EditText)findViewById(R.id.editTextAnswer);
+        txtAnswer = (EditText) findViewById(R.id.editTextAnswer);
 
-       btAnswer.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               CheckAnswer(txtAnswer.getText().toString().trim());
-           }
-       });
+        btAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CheckAnswer(txtAnswer.getText().toString().trim());
+            }
+        });
         btnHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                DialogHelp();
             }
         });
         btnEnd.setOnClickListener(new View.OnClickListener() {
@@ -77,17 +80,133 @@ public class GameActivity extends Activity {
             }
         });
 
-        switch (question_level){
-            case "EASY" : txtLevel.setText("ระดับ : ง่าย");
+        switch (question_level) {
+            case "EASY":
+                txtLevel.setText("ระดับ : ง่าย");
                 break;
-            case "MEDIUM" : txtLevel.setText("ระดับ : ปานกลาง");
+            case "MEDIUM":
+                txtLevel.setText("ระดับ : ปานกลาง");
                 break;
-            case "HARD" : txtLevel.setText("ระดับ : ยาก");
+            case "HARD":
+                txtLevel.setText("ระดับ : ยาก");
                 break;
-            default: txtLevel.setText("ระดับ : ");
+            default:
+                txtLevel.setText("ระดับ : ");
                 break;
         }
         GamesAll();
+        CheckHelp();
+    }
+
+    private void CheckHelp() {
+        String url = getString(R.string.str_url);
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("status", "check_help"));
+        params.add(new BasicNameValuePair("strUserID", strUserID));
+        params.add(new BasicNameValuePair("strUser", ""));
+        params.add(new BasicNameValuePair("strPass", ""));
+        params.add(new BasicNameValuePair("question_level", ""));
+        params.add(new BasicNameValuePair("question_id", ""));
+        params.add(new BasicNameValuePair("help", ""));
+
+        String resultServer = Http.getHttpPost(url, params);
+
+        JSONObject c;
+        try {
+            c = new JSONObject(resultServer);
+            help_answer = c.getString("help_answer");
+            help_skip = c.getString("help_skip");
+            help_guide = c.getString("help_guide");
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        if("0".equals(help_answer) || "0".equals(help_skip) || "0".equals(help_guide)){
+            btnHelp.setEnabled(true);
+        }else{
+            btnHelp.setEnabled(false);
+        }
+    }
+
+    private void DialogHelp() {
+        View checkBoxView = View.inflate(this, R.layout.dialog_help, null);
+        final Button btnHelpAnswer = (Button) checkBoxView.findViewById(R.id.btnHelpAnswer);
+        final Button btnHelpSkip = (Button) checkBoxView.findViewById(R.id.btnHelpSkip);
+        final Button btnHelpGuide = (Button) checkBoxView.findViewById(R.id.btnHelpGuide);
+
+        if("0".equals(help_answer)){
+            btnHelpAnswer.setEnabled(true);
+        }
+        if("0".equals(help_skip)){
+            btnHelpSkip.setEnabled(true);
+        }
+        if("0".equals(help_guide)){
+            btnHelpGuide.setEnabled(true);
+        }
+
+        btnHelpAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String strHelpAnswer = gameList.get(i_random).get("question_answer");
+                txtAnswer.setText(strHelpAnswer);
+
+                help_answer = "1";
+                SaveHelp("help_answer");
+                CheckHelp();
+                btnHelpAnswer.setEnabled(false);
+            }
+        });
+        btnHelpSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String strHelpAnswer = gameList.get(i_random).get("question_answer");
+                GamesAll();
+
+                help_skip = "1";
+                SaveHelp("help_skip");
+                CheckHelp();
+                btnHelpSkip.setEnabled(false);
+            }
+        });
+        btnHelpGuide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String strHelpGuide = gameList.get(i_random).get("question_guide");
+                txtAnswer.setText(strHelpGuide);
+
+                help_guide = "1";
+                SaveHelp("help_guide");
+                CheckHelp();
+                btnHelpGuide.setEnabled(false);
+            }
+        });
+
+
+        AlertDialog.Builder builderInOut = new AlertDialog.Builder(this);
+        builderInOut.setTitle("ตัวช่วย");
+        builderInOut.setMessage("กรุณาเลือกตัวช่วย")
+                .setView(checkBoxView)
+                .setCancelable(false)
+                .setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                })
+                .show();
+    }
+
+    private void SaveHelp(String help) {
+        String url = getString(R.string.str_url);
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("status", "save_help"));
+        params.add(new BasicNameValuePair("strUserID", strUserID));
+        params.add(new BasicNameValuePair("strUser", ""));
+        params.add(new BasicNameValuePair("strPass", ""));
+        params.add(new BasicNameValuePair("question_level", ""));
+        params.add(new BasicNameValuePair("question_id", ""));
+        params.add(new BasicNameValuePair("help", help));
+
+        Http.getHttpPost(url, params);
     }
 
     private void GamesAll() {
@@ -136,12 +255,12 @@ public class GameActivity extends Activity {
     }
 
     private void CheckAnswer(String answer) {
-        if(answer.trim().equals(gameList.get(i_random).get("question_answer").trim())){
+        if (answer.trim().equals(gameList.get(i_random).get("question_answer").trim())) {
             msgShow("เก่งมาก เป็นคำตอบที่ถูกต้อง ^_^");
             PlayVideo();
-        } else{
+        } else {
             msgShow("ไม่ถูกต้องลองพยามหน่อยนะ T_T");
-           // PlayVideo();
+            // PlayVideo();
         }
 
     }
@@ -149,12 +268,12 @@ public class GameActivity extends Activity {
     private void PlayVideo() {
         Intent i = new Intent(getBaseContext(), VideoActivity.class);
         i.putExtra("strUserID", strUserID);
-        i.putExtra("question_level",question_level);
+        i.putExtra("question_level", question_level);
         i.putExtra("video", gameList.get(i_random).get("question_video").trim());
         startActivity(i);
     }
 
-    private void msgShow(String strMsg){
+    private void msgShow(String strMsg) {
         Toast.makeText(getApplicationContext(), strMsg, Toast.LENGTH_SHORT).show();
     }
 }

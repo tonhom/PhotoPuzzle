@@ -79,11 +79,11 @@ public class TopScoreboardActivity extends AppCompatActivity {
                 JSONObject c = data.getJSONObject(i);
                 map = new HashMap<String, String>();
 
-                map.put("no", no.toString());
+                map.put("no", "อันดับที่ : "+no.toString());
                 map.put("score_id", c.getString("score_id"));
-                map.put("score_total", c.getString("score_total"));
+                map.put("score_total", "คะแนน : "+c.getString("score_total"));
                 map.put("user_id", c.getString("user_id"));
-                map.put("username", c.getString("username"));
+                map.put("username", "ชื่อ : "+c.getString("username"));
 
                 ScoreArrList.add(map);
             }
