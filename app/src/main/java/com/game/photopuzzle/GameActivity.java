@@ -32,7 +32,7 @@ public class GameActivity extends Activity {
     String strUserID = "", question_level = "";
     HttpActivity Http = new HttpActivity();
     JSONUrl json = new JSONUrl();
-    String help_answer = "0", help_skip = "0", help_guide = "0";
+    String help_answer = "0", help_skip = "0", help_guide = "0", question_id = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -276,4 +276,21 @@ public class GameActivity extends Activity {
     private void msgShow(String strMsg) {
         Toast.makeText(getApplicationContext(), strMsg, Toast.LENGTH_SHORT).show();
     }
+
+    private void SaveGame() {
+        String url = getString(R.string.str_url);
+        question_id = gameList.get(i_random).get("question_id");
+        // Paste Parameters
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("status", "save_game"));
+        params.add(new BasicNameValuePair("strUserID", strUserID));
+        params.add(new BasicNameValuePair("strUser", ""));
+        params.add(new BasicNameValuePair("strPass", ""));
+        params.add(new BasicNameValuePair("question_level", ""));
+        params.add(new BasicNameValuePair("question_id", question_id));
+        params.add(new BasicNameValuePair("help", ""));
+
+        Http.getHttpPost(url, params);
+    }
+
 }
