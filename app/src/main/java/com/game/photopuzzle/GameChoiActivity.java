@@ -2,6 +2,7 @@ package com.game.photopuzzle;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -30,6 +31,7 @@ public class GameChoiActivity extends Activity{
     String strUserID = "", question_level = "", question_id;
     HttpActivity Http = new HttpActivity();
     JSONUrl json = new JSONUrl();
+    MediaPlayer mMedia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,10 @@ public class GameChoiActivity extends Activity{
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
+        }
+
+        if(mMedia != null){
+            mMedia.release();
         }
 
         txtLevel = (Button) findViewById(R.id.btnLevel);
@@ -105,28 +111,48 @@ public class GameChoiActivity extends Activity{
             case "1":
                 if(gameList.get(i_random).get("answer1").equals(gameList.get(i_random).get("question_answer"))){
                     msgShow("เก่งมาก เป็นคำตอบที่ถูกต้อง ^_^");
+
+                    stopPlaying();
+                    mMedia = MediaPlayer.create(getBaseContext(), R.raw.t);
+                    mMedia.start();
+
                     SaveGame();
                     PlayVideo();
                 }else{
                     msgShow("ไม่ถูกต้องลองพยามหน่อยนะ T_T");
+                    stopPlaying();
+                    mMedia = MediaPlayer.create(getBaseContext(), R.raw.f);
+                    mMedia.start();
                 }
                 break;
             case "2":
                 if(gameList.get(i_random).get("answer2").equals(gameList.get(i_random).get("question_answer"))){
                     msgShow("เก่งมาก เป็นคำตอบที่ถูกต้อง ^_^");
+                    stopPlaying();
+                    mMedia = MediaPlayer.create(getBaseContext(), R.raw.t);
+                    mMedia.start();
                     SaveGame();
                     PlayVideo();
                 }else{
                     msgShow("ไม่ถูกต้องลองพยามหน่อยนะ T_T");
+                    stopPlaying();
+                    mMedia = MediaPlayer.create(getBaseContext(), R.raw.f);
+                    mMedia.start();
                 }
                 break;
             case "3":
                 if(gameList.get(i_random).get("answer3").equals(gameList.get(i_random).get("question_answer"))){
                     msgShow("เก่งมาก เป็นคำตอบที่ถูกต้อง ^_^");
+                    stopPlaying();
+                    mMedia = MediaPlayer.create(getBaseContext(), R.raw.t);
+                    mMedia.start();
                     SaveGame();
                     PlayVideo();
                 }else{
                     msgShow("ไม่ถูกต้องลองพยามหน่อยนะ T_T");
+                    stopPlaying();
+                    mMedia = MediaPlayer.create(getBaseContext(), R.raw.f);
+                    mMedia.start();
                 }
                 break;
             default:
@@ -214,8 +240,16 @@ public class GameChoiActivity extends Activity{
     private void PlayVideo() {
         Intent i = new Intent(getBaseContext(), VideoChoiActivity.class);
         i.putExtra("strUserID", strUserID);
-        i.putExtra("question_level",question_level);
+        i.putExtra("question_level", question_level);
         i.putExtra("video", gameList.get(i_random).get("question_video").trim());
         startActivity(i);
+    }
+
+    private void stopPlaying(){
+        if (mMedia != null) {
+            mMedia.stop();
+            mMedia.release();
+            mMedia = null;
+        }
     }
 }

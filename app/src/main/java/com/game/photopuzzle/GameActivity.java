@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -33,6 +34,7 @@ public class GameActivity extends Activity {
     HttpActivity Http = new HttpActivity();
     JSONUrl json = new JSONUrl();
     String help_answer = "0", help_skip = "0", help_guide = "0", question_id = "0";
+    MediaPlayer mMedia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,11 @@ public class GameActivity extends Activity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+
+        if(mMedia != null){
+            mMedia.release();
+        }
+
 
         imgQuestion = (Button) findViewById(R.id.btnImgQuestion);
         btAnswer = (Button) findViewById(R.id.btnSendAnswer);
@@ -258,10 +265,16 @@ public class GameActivity extends Activity {
     private void CheckAnswer(String answer) {
         if (answer.trim().equals(gameList.get(i_random).get("question_answer").trim())) {
             msgShow("เก่งมาก เป็นคำตอบที่ถูกต้อง ^_^");
+            stopPlaying();
+            mMedia = MediaPlayer.create(getBaseContext(), R.raw.t);
+            mMedia.start();
             SaveGame();
             PlayVideo();
         } else {
             msgShow("ไม่ถูกต้องลองพยามหน่อยนะ T_T");
+            stopPlaying();
+            mMedia = MediaPlayer.create(getBaseContext(), R.raw.f);
+            mMedia.start();
             // PlayVideo();
         }
 
@@ -295,4 +308,11 @@ public class GameActivity extends Activity {
         Http.getHttpPost(url, params);
     }
 
+    private void stopPlaying(){
+        if (mMedia != null) {
+            mMedia.stop();
+            mMedia.release();
+            mMedia = null;
+        }
+    }
 }
