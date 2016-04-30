@@ -23,8 +23,7 @@
         android:id="@+id/btnAnswer1"
         android:layout_below="@+id/imgQuestion"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/bt015"
-        android:layout_marginTop="10dp" />
+        android:background="@drawable/bt015" />
 
     <Button
         android:layout_width="match_parent"
@@ -33,7 +32,6 @@
         android:layout_below="@+id/btnAnswer1"
         android:layout_centerHorizontal="true"
         android:background="@drawable/bt014"
-        android:layout_marginTop="10dp"
         android:layout_alignParentEnd="false" />
 
     <Button
@@ -42,8 +40,7 @@
         android:id="@+id/btnAnswer3"
         android:layout_below="@+id/btnAnswer2"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/bt013"
-        android:layout_marginTop="10dp" />
+        android:background="@drawable/bt013" />
 
     <Button
         android:layout_width="match_parent"
