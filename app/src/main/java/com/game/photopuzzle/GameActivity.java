@@ -241,6 +241,7 @@ public class GameActivity extends Activity {
                 imgQuestion.setBackgroundResource(resQuestionId);
             } else {
                 Intent i = new Intent(getBaseContext(), MainMenuActivity.class);
+                i.putExtra("strUserID", strUserID);
                 startActivity(i);
             }
         } catch (JSONException e) {
